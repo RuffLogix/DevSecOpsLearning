@@ -1,14 +1,14 @@
 name: Vitest
+
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
-
+    
 jobs:
   test:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,5 +18,7 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm ci
+      - name: Run ESLint
+        run: npm run lint
       - name: Run Vitest
         run: npx vitest run
